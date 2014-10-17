@@ -144,6 +144,12 @@
     <ClCompile Include="..\Classes\MainScene.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\WallSingleScene.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CharacterExtend.cpp">
+      <Filter>Classes\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -257,6 +263,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MainScene.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WallSingleScene.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CharacterExtend.h">
+      <Filter>Classes\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

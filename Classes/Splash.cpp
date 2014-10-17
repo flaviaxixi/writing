@@ -64,23 +64,8 @@ bool Splash::init(){
 		fclose(file);
 
 
-		string dbpath = CCFileUtils::sharedFileUtils()->fullPathForFilename("character_info.db");
-
-		char* pFileContent = (char*)CCFileUtils::sharedFileUtils()->getFileData(dbpath.c_str(),"rb",&size);
-		CCLog("file %s",pFileContent);
-		dbpath = CCFileUtils::sharedFileUtils()->getWritablePath()+"character_info.db";
-		FILE* file1 = fopen(dbpath.c_str(),"w");
-		if (file1 != NULL)
-		{
-			CCLog("file not NULL");
-			file1 = fopen(dbpath.c_str(),"wb");
-			fwrite(pFileContent,size,1,file1);
-			CC_SAFE_DELETE_ARRAY(pFileContent);
-		}else{
-			CCLog("file NULL");
-		}
-		fclose(file1);
-
+		initDB("character_info.db");
+		initDB("character_judge.db");
     }
 #endif
 
@@ -88,15 +73,36 @@ bool Splash::init(){
     return true;
 }
 
+void initDB(string db_name){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	string dbpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(db_name.c_str());
+
+	char* pFileContent = (char*)CCFileUtils::sharedFileUtils()->getFileData(dbpath.c_str(),"rb",&size);
+	CCLog("file %s",pFileContent);
+	dbpath = CCFileUtils::sharedFileUtils()->getWritablePath()+db_name;
+	FILE* file1 = fopen(dbpath.c_str(),"w");
+	if (file1 != NULL)
+	{
+		CCLog("file not NULL");
+		file1 = fopen(dbpath.c_str(),"wb");
+		fwrite(pFileContent,size,1,file1);
+		CC_SAFE_DELETE_ARRAY(pFileContent);
+	}else{
+		CCLog("file NULL");
+	}
+	fclose(file1);
+#endif
+}
+
 void Splash::onEnter(){
     CCLayer::onEnter();
-    CCLog("onEnter");
-    this->scheduleOnce(schedule_selector(Splash::finishSplash),0.1f);
+//    CCLog("onEnter");
+    this->scheduleOnce(schedule_selector(Splash::finishSplash),0.4f);
 }
 
 void Splash::onExit(){
     CCLayer::onExit();
-    CCLog("onExit");
+//    CCLog("onExit");
 }
 
 void Splash::onExitTransitionDidStart(){

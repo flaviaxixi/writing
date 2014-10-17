@@ -374,10 +374,6 @@ void WallScene::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent){
 		}
 	}
 
-	// 	if (endTime-beginTime > 3000)
-	// 	{
-	// 		popup();
-	// 	}
 	touched=false;
 	isMoved = false;
 	selectedHanzi = "";
